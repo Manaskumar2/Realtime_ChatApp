@@ -3,7 +3,7 @@ const socket = io()
 let name;
 let textarea = document.querySelector('#textarea')
 let messageArea = document.querySelector('.messageArea')
-var audio=new Audio('ting.mp3')
+
 do {
     name = prompt('Please enter your name: ')
 } while(!name)
@@ -23,7 +23,7 @@ function sendMessage(message) {
     appendMessage(msg, 'outgoing')
     textarea.value = ''
     scrollToBottom()
-    audio.play()
+ 
 
     // Send to server 
     socket.emit('message', msg)
@@ -47,14 +47,13 @@ function appendMessage(msg, type) {
 // Recieve messages 
 socket.on('message', (msg) => {
     appendMessage(msg, 'incoming')
-    audio.play()
     scrollToBottom()
 
 })
-socket.on('left',name=>{
-    appendMessage(`${name} left the chat`,'left')
+// socket.on('left',name=>{
+//     appendMessage(`${name} left the chat`,'left')
     
-})
+// })
 
 function scrollToBottom() {
     messageArea.scrollTop = messageArea.scrollHeight

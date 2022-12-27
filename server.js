@@ -20,16 +20,16 @@ app.get('/',(req,res)=>{
 
 
 const io=require('socket.io')(http)
-const users ={}
+// const users ={}
 
 io.on('connection',(socket)=>{
     console.log('connected....')
     socket.on('message',name=>{
-        users[socket.id]=name
+        // users[socket.id]=name
         socket.broadcast.emit('message',name)
     })
-    socket.on('disconnect',msg=>{
-        socket.broadcast.emit('left',users[socket.id])
-        delete users[socket.id]
-    })
+    // socket.on('disconnect',msg=>{
+    //     socket.broadcast.emit('left',users[socket.id])
+    //     delete users[socket.id]
+    // })
 })
